@@ -132,6 +132,7 @@ function mouseHighlight()
 end
 
 border_drawer = hs.application.watcher.new(function (name, event, app)
+    -- TODO update when window events are hopefully added
     if event == hs.application.watcher.activated then
         win = app:focusedWindow()
         if win ~= nil then
@@ -147,14 +148,6 @@ border_drawer = hs.application.watcher.new(function (name, event, app)
             border:show()
         end
     end
-    -- mousepoint = hs.mouse.get()
-    -- mouseCircle = hs.drawing.circle(hs.geometry.rect(mousepoint.x-40, mousepoint.y-40, 80, 80))
-    -- mouseCircle:setStrokeColor({["red"]=1,["blue"]=0,["green"]=0,["alpha"]=1})
-    -- mouseCircle:setFill(false)
-    -- mouseCircle:setStrokeWidth(5)
-    -- mouseCircle:show()
-    --
-    -- mouseCircleTimer = hs.timer.doAfter(3, function() mouseCircle:delete() end)
 end)
 
 border_drawer:start()
