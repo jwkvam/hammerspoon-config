@@ -210,5 +210,5 @@ function reloadConfig()
     hs.reload()
 end
 
-configFileWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig)
+configFileWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/init.lua", reloadConfig)
 configFileWatcher:start()
