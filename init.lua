@@ -173,6 +173,9 @@ end)
 hs.hotkey.bind({'cmd', 'alt'}, 'h', move_left)
 hs.hotkey.bind({'cmd', 'alt'}, 'l', move_right)
 
+hs.hotkey.bind({'cmd', 'shift', 'alt'}, 'h', function() hs.window.focusedWindow():moveOneScreenWest() end)
+hs.hotkey.bind({'cmd', 'shift', 'alt'}, 'l', function() hs.window.focusedWindow():moveOneScreenEast() end)
+
 hs.hotkey.bind({'cmd', 'alt'}, 'y', move_topleft)
 hs.hotkey.bind({'cmd', 'alt'}, 'o', move_topright)
 hs.hotkey.bind({'cmd', 'alt'}, 'n', move_botleft)
