@@ -131,30 +131,55 @@ function mouseHighlight()
     mouseCircleTimer = hs.timer.doAfter(3, function() mouseCircle:delete() end)
 end
 
+global_border = nil
+
+function redrawBorder()
+    win = hs.window.focusedWindow()
+    if win ~= nil then
+        top_left = win:topLeft()
+        size = win:size()
+        if global_border ~= nil then
+            global_border:delete()
+        end
+        global_border = hs.drawing.rectangle(hs.geometry.rect(top_left['x'], top_left['y'], size['w'], size['h']))
+        global_border:setStrokeColor({["red"]=1,["blue"]=0,["green"]=0,["alpha"]=0.8})
+        global_border:setFill(false)
+        global_border:setStrokeWidth(4)
+        global_border:show()
+    end
+end
+
+allwindows = hs.windowfilter.new(nil)
+allwindows:subscribe(hs.windowfilter.windowFocused, function ()
+    redrawBorder()
+end)
+allwindows:subscribe(hs.windowfilter.windowMoved, function ()
+    redrawBorder()
+end)
+allwindows:subscribe(hs.windowfilter.windowUnfocused, function ()
+    redrawBorder()
+end)
+
 border_drawer = hs.application.watcher.new(function (name, event, app)
     -- TODO update when window events are hopefully added
-    if event == hs.application.watcher.activated then
-        win = app:focusedWindow()
-        if win ~= nil then
-            top_left = win:topLeft()
-            size = win:size()
-            if border ~= nil then
-                border:delete()
-            end
-            border = hs.drawing.rectangle(hs.geometry.rect(top_left['x'], top_left['y'], size['w'], size['h']))
-            border:setStrokeColor({["red"]=1,["blue"]=0,["green"]=0,["alpha"]=0.8})
-            border:setFill(false)
-            border:setStrokeWidth(4)
-            border:show()
-        end
-    end
+    -- if event == hs.application.watcher.activated then
+    --     win = app:focusedWindow()
+    --     if win ~= nil then
+    --         top_left = win:topLeft()
+    --         size = win:size()
+    --         if border ~= nil then
+    --             border:delete()
+    --         end
+    --         border = hs.drawing.rectangle(hs.geometry.rect(top_left['x'], top_left['y'], size['w'], size['h']))
+    --         border:setStrokeColor({["red"]=1,["blue"]=0,["green"]=0,["alpha"]=0.8})
+    --         border:setFill(false)
+    --         border:setStrokeWidth(4)
+    --         border:show()
+    --     end
+    -- end
 end)
 
 border_drawer:start()
-
-hs.hotkey.bind({'cmd', 'alt'}, 'Left', move_left)
-hs.hotkey.bind({'cmd', 'alt'}, 'Right', move_right)
-hs.hotkey.bind({'cmd', 'alt'}, 'Up', maximize_window)
 
 hs.hotkey.bind({'cmd', 'alt'}, 'i', function()
     -- hs.alert.show('launching iterm')
@@ -173,8 +198,15 @@ end)
 hs.hotkey.bind({'cmd', 'alt'}, 'h', move_left)
 hs.hotkey.bind({'cmd', 'alt'}, 'l', move_right)
 
+hs.hotkey.bind({'cmd', 'alt'}, 'Left', move_left)
+hs.hotkey.bind({'cmd', 'alt'}, 'Right', move_right)
+hs.hotkey.bind({'cmd', 'alt'}, 'Up', maximize_window)
+
+
 hs.hotkey.bind({'cmd', 'shift', 'alt'}, 'h', function() hs.window.focusedWindow():moveOneScreenWest() end)
 hs.hotkey.bind({'cmd', 'shift', 'alt'}, 'l', function() hs.window.focusedWindow():moveOneScreenEast() end)
+hs.hotkey.bind({'cmd', 'shift', 'alt'}, 'Left', function() hs.window.focusedWindow():moveOneScreenWest() end)
+hs.hotkey.bind({'cmd', 'shift', 'alt'}, 'Right', function() hs.window.focusedWindow():moveOneScreenEast() end)
 
 hs.hotkey.bind({'cmd', 'alt'}, 'y', move_topleft)
 hs.hotkey.bind({'cmd', 'alt'}, 'o', move_topright)
@@ -215,3 +247,4 @@ end
 
 configFileWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/init.lua", reloadConfig)
 configFileWatcher:start()
+-- hs.alert('reloaded')
