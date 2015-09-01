@@ -149,14 +149,14 @@ function redrawBorder()
     end
 end
 
-allwindows = hs.windowfilter.new(nil)
-allwindows:subscribe(hs.windowfilter.windowFocused, function ()
+allwindows = hs.window.filter.new(nil)
+allwindows:subscribe(hs.window.filter.windowFocused, function ()
     redrawBorder()
 end)
-allwindows:subscribe(hs.windowfilter.windowMoved, function ()
+allwindows:subscribe(hs.window.filter.windowMoved, function ()
     redrawBorder()
 end)
-allwindows:subscribe(hs.windowfilter.windowUnfocused, function ()
+allwindows:subscribe(hs.window.filter.windowUnfocused, function ()
     redrawBorder()
 end)
 
