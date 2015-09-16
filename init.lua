@@ -8,6 +8,9 @@ border_drawer = nil
 
 function move_left()
     local win = hs.window.focusedWindow()
+    if win == nil then
+        return
+    end
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
@@ -21,6 +24,9 @@ end
 
 function move_right()
     local win = hs.window.focusedWindow()
+    if win == nil then
+        return
+    end
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
@@ -34,6 +40,9 @@ end
 
 function move_topleft()
     local win = hs.window.focusedWindow()
+    if win == nil then
+        return
+    end
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
@@ -47,6 +56,9 @@ end
 
 function move_topright()
     local win = hs.window.focusedWindow()
+    if win == nil then
+        return
+    end
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
@@ -60,6 +72,9 @@ end
 
 function move_botleft()
     local win = hs.window.focusedWindow()
+    if win == nil then
+        return
+    end
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
@@ -73,6 +88,9 @@ end
 
 function move_botright()
     local win = hs.window.focusedWindow()
+    if win == nil then
+        return
+    end
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
@@ -86,6 +104,9 @@ end
 
 function maximize_window()
     local win = hs.window.focusedWindow()
+    if win == nil then
+        return
+    end
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
@@ -99,16 +120,25 @@ end
 
 function focus_left()
     local win = hs.window.focusedWindow()
+    if win == nil then
+        return
+    end
     win:focusWindowWest()
 end
 
 function focus_right()
     local win = hs.window.focusedWindow()
+    if win == nil then
+        return
+    end
     win:focusWindowEast()
 end
 
 function focus_south()
     local win = hs.window.focusedWindow()
+    if win == nil then
+        return
+    end
     win:focusWindowEast()
 end
 
@@ -150,6 +180,9 @@ function redrawBorder()
 end
 
 allwindows = hs.window.filter.new(nil)
+allwindows:subscribe(hs.window.filter.windowCreated, function ()
+    redrawBorder()
+end)
 allwindows:subscribe(hs.window.filter.windowFocused, function ()
     redrawBorder()
 end)
