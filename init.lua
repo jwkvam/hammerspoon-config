@@ -123,7 +123,7 @@ function focus_left()
     if win == nil then
         return
     end
-    win:focusWindowWest()
+    win:focusWindowWest(nil, nil, True)
 end
 
 function focus_right()
@@ -131,7 +131,7 @@ function focus_right()
     if win == nil then
         return
     end
-    win:focusWindowEast()
+    win:focusWindowEast(nil, nil, True)
 end
 
 function focus_south()
@@ -180,18 +180,10 @@ function redrawBorder()
 end
 
 allwindows = hs.window.filter.new(nil)
-allwindows:subscribe(hs.window.filter.windowCreated, function ()
-    redrawBorder()
-end)
-allwindows:subscribe(hs.window.filter.windowFocused, function ()
-    redrawBorder()
-end)
-allwindows:subscribe(hs.window.filter.windowMoved, function ()
-    redrawBorder()
-end)
-allwindows:subscribe(hs.window.filter.windowUnfocused, function ()
-    redrawBorder()
-end)
+allwindows:subscribe(hs.window.filter.windowCreated, function () redrawBorder() end)
+allwindows:subscribe(hs.window.filter.windowFocused, function () redrawBorder() end)
+allwindows:subscribe(hs.window.filter.windowMoved, function () redrawBorder() end)
+allwindows:subscribe(hs.window.filter.windowUnfocused, function () redrawBorder() end)
 
 border_drawer = hs.application.watcher.new(function (name, event, app)
     -- TODO update when window events are hopefully added
@@ -228,8 +220,8 @@ end)
 
 -- hs.hotkey.bind({'cmd', 'ctrl'}, 'h', move_focused_window_left)
 -- hs.hotkey.bind({'cmd', 'ctrl'}, 'l', move_focused_window_right)
-hs.hotkey.bind({'cmd', 'alt'}, 'h', move_left)
-hs.hotkey.bind({'cmd', 'alt'}, 'l', move_right)
+-- hs.hotkey.bind({'cmd', 'alt'}, 'h', move_left)
+-- hs.hotkey.bind({'cmd', 'alt'}, 'l', move_right)
 
 hs.hotkey.bind({'cmd', 'alt'}, 'Left', move_left)
 hs.hotkey.bind({'cmd', 'alt'}, 'Right', move_right)
@@ -246,8 +238,8 @@ hs.hotkey.bind({'cmd', 'alt'}, 'o', move_topright)
 hs.hotkey.bind({'cmd', 'alt'}, 'n', move_botleft)
 hs.hotkey.bind({'cmd', 'alt'}, '.', move_botright)
 
-hs.hotkey.bind({'cmd', 'ctrl'}, 'h', focus_left)
-hs.hotkey.bind({'cmd', 'ctrl'}, 'l', focus_right)
+hs.hotkey.bind({'cmd', 'alt'}, 'h', focus_left)
+hs.hotkey.bind({'cmd', 'alt'}, 'l', focus_right)
 
 -- hs.hints.style = 'vimperator'
 hs.hotkey.bind({'cmd', 'alt'}, 'p', hs.hints.windowHints)
