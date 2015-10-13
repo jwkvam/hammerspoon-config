@@ -3,8 +3,6 @@
 -- end)
 
 configFileWatcher = nil
-border = nil
-border_drawer = nil
 
 function move_left()
     local win = hs.window.focusedWindow()
@@ -119,23 +117,25 @@ function maximize_window()
 end
 
 function focus_left()
-    local win = hs.window.focusedWindow()
+    local win = hs.window.filter.new():setCurrentSpace(true)
+    -- local win = hs.window.focusedWindow()
     if win == nil then
         return
     end
-    win:focusWindowWest(nil, nil, True)
+    win:focusWindowWest(nil, false, true)
+    -- win:focusWindowWest(nil, nil, True)
 end
 
 function focus_right()
-    local win = hs.window.focusedWindow()
+    local win = hs.window.filter.new():setCurrentSpace(true)
     if win == nil then
         return
     end
-    win:focusWindowEast(nil, nil, True)
+    win:focusWindowEast(nil, false, true)
 end
 
 function focus_south()
-    local win = hs.window.focusedWindow()
+    local win = hs.window.filter.new():setCurrentSpace(true)
     if win == nil then
         return
     end
@@ -179,32 +179,13 @@ function redrawBorder()
     end
 end
 
+redrawBorder()
+
 allwindows = hs.window.filter.new(nil)
 allwindows:subscribe(hs.window.filter.windowCreated, function () redrawBorder() end)
 allwindows:subscribe(hs.window.filter.windowFocused, function () redrawBorder() end)
 allwindows:subscribe(hs.window.filter.windowMoved, function () redrawBorder() end)
 allwindows:subscribe(hs.window.filter.windowUnfocused, function () redrawBorder() end)
-
-border_drawer = hs.application.watcher.new(function (name, event, app)
-    -- TODO update when window events are hopefully added
-    -- if event == hs.application.watcher.activated then
-    --     win = app:focusedWindow()
-    --     if win ~= nil then
-    --         top_left = win:topLeft()
-    --         size = win:size()
-    --         if border ~= nil then
-    --             border:delete()
-    --         end
-    --         border = hs.drawing.rectangle(hs.geometry.rect(top_left['x'], top_left['y'], size['w'], size['h']))
-    --         border:setStrokeColor({["red"]=1,["blue"]=0,["green"]=0,["alpha"]=0.8})
-    --         border:setFill(false)
-    --         border:setStrokeWidth(4)
-    --         border:show()
-    --     end
-    -- end
-end)
-
-border_drawer:start()
 
 hs.hotkey.bind({'cmd', 'alt'}, 'i', function()
     -- hs.alert.show('launching iterm')
@@ -255,16 +236,6 @@ function reloadConfig()
     if configFileWatcher ~= nil then
         configFileWatcher:stop()
         configFileWatcher = nil
-    end
-
-    if border_drawer ~= nil then
-        border_drawer:stop()
-        border_drawer = nil
-    end
-
-    if border ~= nil then
-        border:delete()
-        border = nil
     end
 
     hs.reload()
