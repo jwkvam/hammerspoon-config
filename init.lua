@@ -18,6 +18,7 @@ function move_left()
     f.w = max.w / 2
     f.h = max.h
     win:setFrame(f)
+    redrawBorder()
 end
 
 function move_right()
@@ -34,6 +35,7 @@ function move_right()
     f.w = max.w / 2
     f.h = max.h
     win:setFrame(f)
+    redrawBorder()
 end
 
 function move_topleft()
@@ -50,6 +52,7 @@ function move_topleft()
     f.w = max.w / 2
     f.h = max.h / 2
     win:setFrame(f)
+    redrawBorder()
 end
 
 function move_topright()
@@ -66,6 +69,7 @@ function move_topright()
     f.w = max.w / 2
     f.h = max.h / 2
     win:setFrame(f)
+    redrawBorder()
 end
 
 function move_botleft()
@@ -82,6 +86,7 @@ function move_botleft()
     f.w = max.w / 2
     f.h = max.h / 2
     win:setFrame(f)
+    redrawBorder()
 end
 
 function move_botright()
@@ -98,6 +103,7 @@ function move_botright()
     f.w = max.w / 2
     f.h = max.h / 2
     win:setFrame(f)
+    redrawBorder()
 end
 
 function maximize_window()
@@ -114,6 +120,7 @@ function maximize_window()
     f.w = max.w
     f.h = max.h
     win:setFrame(f)
+    redrawBorder()
 end
 
 function focus_left()
