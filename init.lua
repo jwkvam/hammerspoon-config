@@ -2,7 +2,67 @@
 --     hs.alert.show('Hello World!')
 -- end)
 
+-- local grid = require "hs.grid"
+--
+-- require "keyboard_grid"
+
 configFileWatcher = nil
+
+
+---------------------------------------------------------
+-- KEYBOARD-GRID WINDOW MANIPULATION
+---------------------------------------------------------
+
+-- # DEFINE A NEW GRID
+
+
+-- local hyper = {'cmd', 'ctrl', 'alt', 'shift'}
+-- local createNewGrid = hs.hotkey.modal.new(hyper, "W")
+--
+-- function createNewGridExit()
+--   createNewGrid:exit()
+--   mode.exit("keygrid", "newgrid")
+-- end
+--
+-- createNewGrid:bind({}, 'escape', createNewGridExit)
+--
+-- function createNewGrid:entered()
+--   mode.enter("keygrid", "newgrid")
+--   hideGridfn = drawGrid()
+--
+--   local function hideGridAndExit()
+--     if hideGridfn then hideGridfn() end
+--     createNewGridExit()
+--   end
+--
+--   newKeyboardGrid(hideGridAndExit)
+-- end
+--
+-- -- # RESIZE
+--
+-- local resizeWithCell = hs.hotkey.modal.new(hyper, "Q")
+--
+-- function resizeWithCellExit()
+--   resizeWithCell:exit()
+--   mode.exit("keygrid", "resize")
+-- end
+-- createNewGrid:bind({}, 'escape', resizeWithCellExit)
+--
+-- function resizeWithCell:entered()
+--   mode.enter("keygrid", "resize")
+--   hideGridfn = drawGrid()
+--
+--   local function hideGridAndExit()
+--     if hideGridfn then hideGridfn() end
+--     resizeWithCellExit()
+--   end
+--
+--   resizeGridWithCell(hideGridAndExit)
+-- end
+
+---------------------------------------------------------
+-- KEYBOARD-GRID WINDOW MANIPULATION
+---------------------------------------------------------
 
 function move_left()
     local win = hs.window.focusedWindow()
@@ -181,7 +241,7 @@ function redrawBorder()
         global_border = hs.drawing.rectangle(hs.geometry.rect(top_left['x'], top_left['y'], size['w'], size['h']))
         global_border:setStrokeColor({["red"]=1,["blue"]=0,["green"]=0,["alpha"]=0.8})
         global_border:setFill(false)
-        global_border:setStrokeWidth(4)
+        global_border:setStrokeWidth(8)
         global_border:show()
     end
 end
@@ -211,6 +271,7 @@ end)
 -- hs.hotkey.bind({'cmd', 'alt'}, 'h', move_left)
 -- hs.hotkey.bind({'cmd', 'alt'}, 'l', move_right)
 
+
 hs.hotkey.bind({'cmd', 'alt'}, 'Left', move_left)
 hs.hotkey.bind({'cmd', 'alt'}, 'Right', move_right)
 hs.hotkey.bind({'cmd', 'alt'}, 'Up', maximize_window)
@@ -233,7 +294,15 @@ hs.hotkey.bind({'cmd', 'alt'}, 'l', focus_right)
 hs.hotkey.bind({'cmd', 'alt'}, 'p', hs.hints.windowHints)
 hs.hotkey.bind({'cmd'}, 'p', hs.hints.windowHints)
 
--- hs.hotkey.bind({'cmd', 'shift'}, 'd', mouseHighlight)
+------------------------------------------------
+-- GRID
+------------------------------------------------
+hs.grid.setGrid('2x2')
+hs.grid.setMargins('0x0')
+hs.hotkey.bind({'cmd'}, 'g', hs.grid.show)
+------------------------------------------------
+-- GRID
+------------------------------------------------
 
 
 hs.window.animationDuration = 0
