@@ -297,7 +297,7 @@ hs.hotkey.bind({'cmd'}, 'p', hs.hints.windowHints)
 ------------------------------------------------
 -- GRID
 ------------------------------------------------
-hs.grid.setGrid('2x2')
+hs.grid.setGrid('4x4')
 hs.grid.setMargins('0x0')
 hs.hotkey.bind({'cmd'}, 'g', hs.grid.show)
 ------------------------------------------------
