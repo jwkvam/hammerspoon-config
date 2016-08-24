@@ -281,9 +281,14 @@ end)
 -- -- hs.hotkey.bind({'cmd', 'alt'}, 'Left', function() hs.osascript.applescript("set volume output volume (output volume of (get volume settings) + 1) --100%") end)
 -- hs.hotkey.bind({}, 'f10', function() hs.osascript.applescript("set volume output volume (output volume of (get volume settings) + 1) --100%") end)
 -- hs.hotkey.bind({}, 'F12', move_left)
-hs.hotkey.bind({}, 'f12', function() os.execute('./toggle.sh') end)
-hs.hotkey.bind({}, 'f10', function() os.execute('./raise.sh') end)
-hs.hotkey.bind({}, 'f9', function() os.execute('./lower.sh') end)
+
+toggle_vol = function() os.execute('./toggle.sh') end
+lower_vol = function() os.execute('./lower.sh') end
+raise_vol = function() os.execute('./raise.sh') end
+
+hs.hotkey.bind({}, 'f12', toggle_vol, function() end, toggle_vol)
+hs.hotkey.bind({}, 'f10', raise_vol, function() end, raise_vol)
+hs.hotkey.bind({}, 'f9', lower_vol, function() end, lower_vol)
 
 hs.hotkey.bind({'cmd', 'alt'}, 'Left', move_left)
 hs.hotkey.bind({'cmd', 'alt'}, 'Right', move_right)
