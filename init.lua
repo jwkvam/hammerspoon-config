@@ -256,9 +256,9 @@ allwindows:subscribe(hs.window.filter.windowUnfocused, function () redrawBorder(
 
 hs.hotkey.bind({'cmd', 'alt'}, 'i', function()
     -- hs.alert.show('launching iterm')
-    -- ret = hs.application.launchOrFocus('iTerm')
+    ret = hs.application.launchOrFocus('iTerm')
     -- ret = hs.application.launchOrFocus('iTerm2')
-    ret = hs.application.launchOrFocus('iTerm 2')
+    -- ret = hs.application.launchOrFocus('iTerm 2')
     -- hs.alert.show(ret)
     -- local iterm = hs.appfinder.appFromName('Safari')
     -- local iterm = hs.appfinder.appFromName('iTerm')
@@ -271,6 +271,19 @@ end)
 -- hs.hotkey.bind({'cmd', 'alt'}, 'h', move_left)
 -- hs.hotkey.bind({'cmd', 'alt'}, 'l', move_right)
 
+-- hs.hotkey.bind({}, 'F12', function() hs.osascript.applescript('set curVolume to get volume settings if output muted of curVolume is false then set volume with output muted else set volume without output muted end if') end)
+-- hs.hotkey.bind({}, 'F11', function() hs.osascript.applescript("set volume output volume (output volume of (get volume settings) + 1) --100%") end)
+--
+-- hs.hotkey.bind({}, 'F12', function() hs.osascript.applescript('set curVolume to get volume settings if output muted of curVolume is false then set volume with output muted else set volume without output muted end if') end)
+-- hs.hotkey.bind({}, 'F11', function() hs.osascript.applescript("set volume output volume (output volume of (get volume settings) + 1) --100%") end)
+-- hs.hotkey.bind({}, 'F10', function() hs.osascript.applescript("set volume output volume (output volume of (get volume settings) + 1) --100%") end)
+--
+-- -- hs.hotkey.bind({'cmd', 'alt'}, 'Left', function() hs.osascript.applescript("set volume output volume (output volume of (get volume settings) + 1) --100%") end)
+-- hs.hotkey.bind({}, 'f10', function() hs.osascript.applescript("set volume output volume (output volume of (get volume settings) + 1) --100%") end)
+-- hs.hotkey.bind({}, 'F12', move_left)
+hs.hotkey.bind({}, 'f12', function() os.execute('./toggle.sh') end)
+hs.hotkey.bind({}, 'f10', function() os.execute('./raise.sh') end)
+hs.hotkey.bind({}, 'f9', function() os.execute('./lower.sh') end)
 
 hs.hotkey.bind({'cmd', 'alt'}, 'Left', move_left)
 hs.hotkey.bind({'cmd', 'alt'}, 'Right', move_right)
