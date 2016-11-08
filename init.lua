@@ -309,6 +309,7 @@ hs.hotkey.bind({'cmd', 'alt'}, 'h', focus_left)
 hs.hotkey.bind({'cmd', 'alt'}, 'l', focus_right)
 
 -- hs.hints.style = 'vimperator'
+hs.hints.showTitleThresh = 10
 hs.hotkey.bind({'cmd', 'alt'}, 'p', hs.hints.windowHints)
 hs.hotkey.bind({'cmd'}, 'p', hs.hints.windowHints)
 
