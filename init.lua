@@ -8,62 +8,6 @@
 
 configFileWatcher = nil
 
-
----------------------------------------------------------
--- KEYBOARD-GRID WINDOW MANIPULATION
----------------------------------------------------------
-
--- # DEFINE A NEW GRID
-
-
--- local hyper = {'cmd', 'ctrl', 'alt', 'shift'}
--- local createNewGrid = hs.hotkey.modal.new(hyper, "W")
---
--- function createNewGridExit()
---   createNewGrid:exit()
---   mode.exit("keygrid", "newgrid")
--- end
---
--- createNewGrid:bind({}, 'escape', createNewGridExit)
---
--- function createNewGrid:entered()
---   mode.enter("keygrid", "newgrid")
---   hideGridfn = drawGrid()
---
---   local function hideGridAndExit()
---     if hideGridfn then hideGridfn() end
---     createNewGridExit()
---   end
---
---   newKeyboardGrid(hideGridAndExit)
--- end
---
--- -- # RESIZE
---
--- local resizeWithCell = hs.hotkey.modal.new(hyper, "Q")
---
--- function resizeWithCellExit()
---   resizeWithCell:exit()
---   mode.exit("keygrid", "resize")
--- end
--- createNewGrid:bind({}, 'escape', resizeWithCellExit)
---
--- function resizeWithCell:entered()
---   mode.enter("keygrid", "resize")
---   hideGridfn = drawGrid()
---
---   local function hideGridAndExit()
---     if hideGridfn then hideGridfn() end
---     resizeWithCellExit()
---   end
---
---   resizeGridWithCell(hideGridAndExit)
--- end
-
----------------------------------------------------------
--- KEYBOARD-GRID WINDOW MANIPULATION
----------------------------------------------------------
-
 function move_left()
     local win = hs.window.focusedWindow()
     if win == nil then
@@ -316,7 +260,7 @@ hs.hotkey.bind({'cmd'}, 'p', hs.hints.windowHints)
 ------------------------------------------------
 -- GRID
 ------------------------------------------------
-hs.grid.setGrid('4x4')
+hs.grid.setGrid('6x6')
 hs.grid.setMargins('0x0')
 hs.hotkey.bind({'cmd'}, 'g', hs.grid.show)
 ------------------------------------------------
