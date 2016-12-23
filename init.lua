@@ -236,6 +236,8 @@ hs.hotkey.bind({}, 'f9', lower_vol, function() end, lower_vol)
 
 hs.hotkey.bind({'cmd', 'alt'}, 'Left', move_left)
 hs.hotkey.bind({'cmd', 'alt'}, 'Right', move_right)
+hs.hotkey.bind({'cmd', 'ctrl'}, 'h', move_left)
+hs.hotkey.bind({'cmd', 'ctrl'}, 'l', move_right)
 hs.hotkey.bind({'cmd', 'alt'}, 'Up', maximize_window)
 
 
