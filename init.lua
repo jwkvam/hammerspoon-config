@@ -238,6 +238,7 @@ hs.hotkey.bind({'cmd', 'alt'}, 'Left', move_left)
 hs.hotkey.bind({'cmd', 'alt'}, 'Right', move_right)
 hs.hotkey.bind({'cmd', 'ctrl'}, 'h', move_left)
 hs.hotkey.bind({'cmd', 'ctrl'}, 'l', move_right)
+hs.hotkey.bind({'cmd', 'ctrl'}, 'k', maximize_window)
 hs.hotkey.bind({'cmd', 'alt'}, 'Up', maximize_window)
 
 
@@ -256,7 +257,7 @@ hs.hotkey.bind({'cmd', 'alt'}, 'l', focus_right)
 
 -- hs.hints.style = 'vimperator'
 hs.hints.showTitleThresh = 10
-hs.hotkey.bind({'cmd', 'alt'}, 'p', hs.hints.windowHints)
+-- hs.hotkey.bind({'cmd', 'alt'}, 'p', hs.hints.windowHints)
 hs.hotkey.bind({'cmd'}, 'p', hs.hints.windowHints)
 
 ------------------------------------------------
