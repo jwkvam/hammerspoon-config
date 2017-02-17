@@ -260,12 +260,18 @@ hs.hotkey.bind({'cmd', 'alt'}, 'o', move_topright)
 hs.hotkey.bind({'cmd', 'alt'}, 'n', move_botleft)
 hs.hotkey.bind({'cmd', 'alt'}, '.', move_botright)
 
+hs.hotkey.bind({'cmd', 'ctrl'}, 'y', move_topleft)
+hs.hotkey.bind({'cmd', 'ctrl'}, 'o', move_topright)
+hs.hotkey.bind({'cmd', 'ctrl'}, 'n', move_botleft)
+hs.hotkey.bind({'cmd', 'ctrl'}, '.', move_botright)
+
 hs.hotkey.bind({'cmd', 'alt'}, 'h', focus_left)
 hs.hotkey.bind({'cmd', 'alt'}, 'l', focus_right)
-hs.hotkey.bind({'cmd'}, 'h', focus_left)
-hs.hotkey.bind({'cmd'}, 'l', focus_right)
-hs.hotkey.bind({'cmd'}, 'j', focus_south)
-hs.hotkey.bind({'cmd'}, 'k', focus_north)
+
+hs.hotkey.bind({'cmd', 'shift'}, 'h', focus_left)
+hs.hotkey.bind({'cmd', 'shift'}, 'l', focus_right)
+hs.hotkey.bind({'cmd', 'shift'}, 'j', focus_south)
+hs.hotkey.bind({'cmd', 'shift'}, 'k', focus_north)
 
 -- hs.hints.style = 'vimperator'
 hs.hints.showTitleThresh = 10
@@ -278,6 +284,7 @@ hs.hotkey.bind({'cmd'}, 'p', hs.hints.windowHints)
 hs.grid.setGrid('6x6')
 hs.grid.setMargins('0x0')
 hs.hotkey.bind({'cmd'}, 'g', hs.grid.show)
+hs.hotkey.bind({'cmd'}, 'h', hs.grid.show)
 ------------------------------------------------
 -- GRID
 ------------------------------------------------
