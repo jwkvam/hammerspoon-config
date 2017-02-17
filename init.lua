@@ -145,12 +145,20 @@ function focus_right()
     win:focusWindowEast(nil, false, true)
 end
 
+function focus_north()
+    local win = hs.window.filter.new():setCurrentSpace(true)
+    if win == nil then
+        return
+    end
+    win:focusWindowNorth(nil, false, true)
+end
+
 function focus_south()
     local win = hs.window.filter.new():setCurrentSpace(true)
     if win == nil then
         return
     end
-    win:focusWindowEast()
+    win:focusWindowSouth(nil, false, true)
 end
 
 -- I always end up losing my mouse pointer, particularly if it's on a monitor full of terminals.
@@ -254,6 +262,10 @@ hs.hotkey.bind({'cmd', 'alt'}, '.', move_botright)
 
 hs.hotkey.bind({'cmd', 'alt'}, 'h', focus_left)
 hs.hotkey.bind({'cmd', 'alt'}, 'l', focus_right)
+hs.hotkey.bind({'cmd'}, 'h', focus_left)
+hs.hotkey.bind({'cmd'}, 'l', focus_right)
+hs.hotkey.bind({'cmd'}, 'j', focus_south)
+hs.hotkey.bind({'cmd'}, 'k', focus_north)
 
 -- hs.hints.style = 'vimperator'
 hs.hints.showTitleThresh = 10
