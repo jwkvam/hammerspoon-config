@@ -252,6 +252,8 @@ hs.hotkey.bind({'cmd', 'alt'}, 'Up', maximize_window)
 
 hs.hotkey.bind({'cmd', 'shift', 'alt'}, 'h', function() hs.window.focusedWindow():moveOneScreenWest() end)
 hs.hotkey.bind({'cmd', 'shift', 'alt'}, 'l', function() hs.window.focusedWindow():moveOneScreenEast() end)
+hs.hotkey.bind({'cmd', 'shift', 'ctrl'}, 'h', function() hs.window.focusedWindow():moveOneScreenWest() end)
+hs.hotkey.bind({'cmd', 'shift', 'ctrl'}, 'l', function() hs.window.focusedWindow():moveOneScreenEast() end)
 hs.hotkey.bind({'cmd', 'shift', 'alt'}, 'Left', function() hs.window.focusedWindow():moveOneScreenWest() end)
 hs.hotkey.bind({'cmd', 'shift', 'alt'}, 'Right', function() hs.window.focusedWindow():moveOneScreenEast() end)
 
