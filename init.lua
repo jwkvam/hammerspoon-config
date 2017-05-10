@@ -291,8 +291,21 @@ expose_browsers = hs.expose.new{'Safari','Google Chrome'} -- specialized expose 
 -- for your dozens of browser windows :)
 
 -- then bind to a hotkey
+hs.expose.ui.maxHintLetters = 1
 hs.hotkey.bind('ctrl-cmd','e','Expose',function()expose:toggleShow()end)
 hs.hotkey.bind('ctrl-cmd-shift','e','App Expose',function()expose_app:toggleShow()end)
+hs.hotkey.bind('cmd','e','Expose',function()expose:toggleShow()end)
+
+
+------------------------------------------------
+-- TILE WINDOWS ON CURRENT SCREEN
+------------------------------------------------
+hs.hotkey.bind({'cmd', 'ctrl'}, 't', function()
+    local wins = hs.window.filter.new():setCurrentSpace(true):getWindows()
+    local screen = hs.screen.mainScreen():currentMode()
+    local rect = hs.geometry(0, 0, screen['w'], screen['h'])
+    hs.window.tiling.tileWindows(wins, rect)
+end)
 
 ------------------------------------------------
 -- GRID
